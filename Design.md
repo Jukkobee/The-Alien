@@ -36,3 +36,5 @@ You are on the other side of a fence from the alien. You can’t climb over (bei
 
 ### NOTE:
 he plot may change if it needs to. What’s important is simplicity and consistency.
+
+# *EVERYTHING BELOW IS A SEAN COMMENT*
