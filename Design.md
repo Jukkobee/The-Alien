@@ -7,8 +7,19 @@ People who like both puzzles and linguistics. And are willing to think for a whi
 ### Plot:
 You meet an alien. You need something from him, and he seems to need something from you. His language contains like 20 words, none of which you understand. (Each word should be a single letter, I think. Which means, at max, 26 total words) You must learn his language in order to find out what he wants, tell him what you want, and get each other what you guys need.
 
+```
+How do you figure out the new language on each level? More specifcally, whats the actual puzzle element of the game. I was just wondering what the actual mechanics are
+```
+
 ### Basics:
-You can walk around, perform some basic functions (moving things around, and then other things that are probably level-specific), and talk to the alien. You can say whatever combination of words to him in his language, and he will respond in a way that makes sense.
+You can walk around, perform some basic functions (moving things around, and then other things that are probably level-specific), 
+```
+why exactly are things moving around? What are the basic functions
+
+??? what are the "other things" ???
+```
+
+and talk to the alien. You can say whatever combination of words to him in his language, and he will respond in a way that makes sense.
 
 ### Design:
 Very basic, like an 8-bit --> ![](https://github.com/sozalpasan1/The-Alien/blob/main/image1.png)
@@ -36,5 +47,3 @@ You are on the other side of a fence from the alien. You can’t climb over (bei
 
 ### NOTE:
 he plot may change if it needs to. What’s important is simplicity and consistency.
-
-# *!!! EVERYTHING BELOW IS A SEAN COMMENT !!!*
