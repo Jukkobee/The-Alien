@@ -30,25 +30,25 @@ It’s a 2D game, and we have a Birds Eye view of you walking around. The floor 
 
 ### Other Stuff:
 We will hopefully make multiple levels. The language, along with what each of you need from each other, is completely different every time.
-`
+``
 how do you figure out each individual language 😭
-`
+``
 
 But different levels aren’t necessarily harder. Keep in mind that I want to keep this realistic. It’s totally OK if the game is “too hard”. We can make it easier afterward, as long as we always stick to the fact that the alien is actually speaking in his language. It can be a very simple language (like I said, only like 20 words), but the rules must be consistent. 
-`
+``
 so you figure out the rules on level 1, then those rules are the same but the vocab is different?
-`
+``
 
 Also, you can’t make gestures or face movements or anything to the alien. It’s an alien, so it won’t understand them. The human gesture for “hungry” could be the alien gesture for “I love vacuuming”. 
-`
+``
 how will gestures be implemented?
-`
+``
 
 The human tone of voice meaning that you’re scared could be the alien tone of voice meaning that its tired.
 
-`
+``
 how will tone be implemented?
-`
+``
 
 
 ### WORDS USED IN EVERY LEVEL:
