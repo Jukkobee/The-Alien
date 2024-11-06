@@ -5,7 +5,7 @@
 People who like both puzzles and linguistics. And are willing to think and be frustrated for a while.
 
 ### Plot:
-You meet a stranger that speaks a very foreign language. You need something from him, and he seems to need something from you. His language only contains like 20 words, none of which you understand. (Each word should be a single letter, I think. Which means, at max, 26 total words) You must learn his language in order to find out what he wants, tell him what you want, and get each other what you guys need. There is no secret trick to learning his language. Literally just talk to him and be confused. Try different sentence combinations until something seems to make sense. I think you would start with the knowledge of which words are nouns, verbs, or other. And there would be a button to show him things that you are holding.
+You meet a stranger that speaks a very foreign language. You need something from him, and he seems to need something from you. His language only contains like 20 words, none of which you understand. (Each word should be a single letter, I think. Which means, at max, 26 total words) You must learn his language in order to find out what he wants, tell him what you want, and get each other what you guys need. There is no secret trick to learning his language. Literally just talk to him and be confused. Try different sentence combinations until something seems to make sense. You would start with the knowledge of which words are nouns, verbs, or other from your basic language classes at explorer school. And there would be a button to show him things that you are holding.
 
 
 ### Basics:
