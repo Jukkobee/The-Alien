@@ -13,6 +13,8 @@
 - **Less Ideal than Konva:** Not as good as Konva because it is not as simplistic, but still a viable option.
 
 ---
+FIGMA LINK: https://www.figma.com/board/vjSPkIdI8fSJ9PLJyOyecl/Welcome-to-FigJam?node-id=0-1&t=Mn9pvoKOkSGx0mzy-1
+
 
 ### Architecture:
 
