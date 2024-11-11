@@ -21,12 +21,9 @@ Manages the game state, level progression, and core game mechanics.
 
 **Variables:**
 - `currentLevel`: `int` - Tracks the current level number.
-- `player`: `Player` - Instance of the player character.
-- `stranger`: `Stranger` - Instance of the NPC stranger.
-- `inventory`: `List<GameObject>` - List of items the player is carrying.
-- `hexGrid`: `HexGrid` - Instance of the game's hexagonal grid.
-- `isConversationMode`: `boolean` - Indicates if the player is in conversation UI.
-- `objects`: `List<GameObject>` - List of interactive objects in the level.
+- `player`: `Player` - Instance of the player character. //connects to Player
+- `stranger`: `Stranger` - Instance of the NPC stranger. //connects to Stranger
+- `inventory`: `List<GameObject>` - List of items the player is carrying. //connects to GameObject
 - `barriers`: `List<Barrier>` - List of impassable barriers (fences, walls).
 
 **Methods:**
@@ -51,19 +48,19 @@ Handles the language mechanics and conversation logic.
 - `generateStrangerResponse(playerWords: List<String>, state: GameState)`: Generates a contextual response based on the game state.
 - `isValidWord(word: String)`: Checks if the word exists in the current level's vocabulary.
 
-#### 3. **Player**
+#### 3. **Player**f
 Represents the player character and their interactions.
 
 **Variables:**
 - `position`: `HexCoordinate` - Current position on hex grid.
 - `direction`: `Vector2` - Facing direction.
 - `isHoldingObject`: `boolean` - Whether the player is carrying something.
-- `currentObject`: `GameObject` - Reference to the held object.
+- `currentObject`: `GameObject` - Reference to the held object. //connects to gameobject
 
 **Methods:**
-- `move(direction: Direction)`: Updates position on hex grid and checks for collisions.
-- `pickupObject(object: GameObject)`: Attempts to pick up a nearby object.
-- `showObject(object: GameObject)`: Displays held object to the stranger.
+- `move(direction: Direction)`: Updates position on hex grid and checks for collisions. /connects to HexGrid
+- `pickupObject(object: GameObject)`: Attempts to pick up a nearby object. //connects to gameObject
+- `showObject(object: GameObject)`: Displays held object to the stranger.//connects to gameObject
 - `dropObject`: Releases the currently held object.
 
 #### 4. **Stranger**
@@ -78,7 +75,7 @@ Manages the NPC stranger's behavior and state.
 **Methods:**
 - `processPlayerAction(action: Action)`: Responds to player interactions.
 - `updateState`: Updates the stranger's state based on game progress.
-- `giveItem(item: GameObject)`: Transfers item to the player if conditions are met.
+- `giveItem(item: GameObject)`: Transfers item to the player if conditions are met. //connecst to GameObject
 
 #### 5. **HexGrid**
 Manages the hexagonal grid system and object placement.
@@ -86,23 +83,23 @@ Manages the hexagonal grid system and object placement.
 **Variables:**
 - `grid`: `2D Array of Hex` - Grid layout.
 - `walkableHexes`: `List<HexCoordinate>` - Accessible positions.
-- `objectLocations`: `Map<GameObject, HexCoordinate>` - Object positions.
+- `objectLocations`: `Map<GameObject, HexCoordinate>` - Object positions. //connects to GameObject
 
 **Methods:**
 - `isWalkable(position: HexCoordinate)`: Returns a boolean indicating if the hex can be walked on.
 - `getNeighbors(position: HexCoordinate)`: Returns a list of adjacent accessible hexes.
-- `placeObject(object: GameObject, position: HexCoordinate)`: Places object on grid.
+- `placeObject(object: GameObject, position: HexCoordinate)`: Places object on grid. //connects to GameObject
 
 #### 6. **GameObject**
 Base class for interactive objects in the game.
 
 **Variables:**
 - `type`: `ObjectType` - Type of object (key, rock, food, etc.).
-- `position`: `HexCoordinate` - Current position.
+- `position`: `HexCoordinate` - Current position. //connect to hex
 - `isPickupable`: `boolean` - Whether the object can be picked up.
 - `isVisible`: `boolean` - Whether the object is currently visible.
 
 **Methods:**
-- `interact(player: Player)`: Handles player interaction with the object.
+- `interact(player: Player)`: Handles player interaction with the object. //connect to player
 - `updateState(state: GameState)`: Updates object state based on game events.
 - `show/hide`: Controls object visibility.
