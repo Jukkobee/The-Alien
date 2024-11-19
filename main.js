@@ -1,6 +1,6 @@
-// Grid settings
-const gridSize = 50;
-const mapCols = Math.floor(window.innerWidth / gridSize);
+// Modify grid settings to make map smaller
+const gridSize = 40; // Reduced grid size
+const mapCols = Math.floor(window.innerWidth * 0.75 / gridSize); // 75% of screen width
 const mapRows = Math.floor(window.innerHeight / gridSize);
 const mapWidth = mapCols * gridSize;
 const mapHeight = mapRows * gridSize;
@@ -105,7 +105,6 @@ document.addEventListener('keydown', (e) => {
     layer.batchDraw();
 });
 
-
 // Interaction logic
 const interactionRange = gridSize;
 function checkForInteraction() {
@@ -113,7 +112,7 @@ function checkForInteraction() {
     const dy = Math.abs(player.y() - npc.y());
 
     if (dx <= interactionRange && dy <= interactionRange) {
-        console.log('You are near the NPC. Press E to interact!');
+        addChatMessage('You are near the NPC. Press E to interact!');
     }
 }
 
@@ -127,47 +126,102 @@ document.addEventListener('keydown', (e) => {
 // Draw the layer
 layer.draw();
 
-// Previous grid and Konva setup remains the same...
-
 // Chat functionality
-const chatMessages = document.getElementById('chat-messages');
-const chatInput = document.getElementById('chat-input');
-const sendBtn = document.getElementById('send-btn');
+document.addEventListener('DOMContentLoaded', () => {
+    const chatInput = document.getElementById('chat-input');
+    const sendButton = document.getElementById('send-button');
+    const chatMessages = document.getElementById('chat-messages');
 
-function addChatMessage(message, sender = 'System') {
-    const messageElement = document.createElement('div');
-    messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
-    chatMessages.appendChild(messageElement);
-    
-    // Auto-scroll to the bottom of chat
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
+    // Function to add a message to the chat
+    function addMessage(message, sender = 'player') {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', sender);
+        
+        // Create timestamp
+        const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        
+        // Different styling for player and system messages
+        if (sender === 'player') {
+            messageElement.innerHTML = `
+                <div class="message-content">
+                    <strong>You:</strong> ${message}
+                </div>
+                <span class="timestamp">${timestamp}</span>
+            `;
+            messageElement.classList.add('message-player');
+        } else {
+            messageElement.innerHTML = `
+                <div class="message-content">
+                    <strong>NPC:</strong> ${message}
+                </div>
+                <span class="timestamp">${timestamp}</span>
+            `;
+            messageElement.classList.add('message-npc');
+        }
 
-// Modify interaction logic to use chat
-function checkForInteraction() {
-    const dx = Math.abs(player.x() - npc.x());
-    const dy = Math.abs(player.y() - npc.y());
-
-    if (dx <= interactionRange && dy <= interactionRange) {
-        addChatMessage('You are near the NPC. Press E to interact!');
+        // Append the message and scroll to bottom
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
-}
 
-// Send message functionality
-sendBtn.addEventListener('click', () => {
-    const message = chatInput.value.trim();
-    if (message) {
-        addChatMessage(message, 'Player');
-        chatInput.value = ''; // Clear input
+    // Send message function
+    function sendMessage() {
+        const message = chatInput.value.trim();
+        if (message) {
+            // Add player message
+            addMessage(message);
+            
+            // Clear input
+            chatInput.value = '';
+
+            // Simulate NPC response (you can replace this with more complex logic)
+            setTimeout(() => {
+                // Basic NPC responses based on interaction
+                const npcResponses = [
+                    "Hello there! How can I help you today?",
+                    "Interesting conversation...",
+                    "I'm listening.",
+                    "Is there something specific you'd like to discuss?"
+                ];
+                const randomResponse = npcResponses[Math.floor(Math.random() * npcResponses.length)];
+                addMessage(randomResponse, 'npc');
+            }, 500);
+        }
     }
+
+    // Event listeners for sending messages
+    sendButton.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Interaction with NPC
+    function handleNPCInteraction() {
+        const npcMessages = [
+            "You're close to the NPC. Want to start a conversation?",
+            "The NPC seems interested in talking.",
+            "A mysterious figure awaits your interaction."
+        ];
+        const randomMessage = npcMessages[Math.floor(Math.random() * npcMessages.length)];
+        addMessage(randomMessage, 'npc');
+    }
+
+    // Modify the existing interaction check to use chat
+    function checkForInteraction() {
+        const dx = Math.abs(player.x() - npc.x());
+        const dy = Math.abs(player.y() - npc.y());
+
+        if (dx <= interactionRange && dy <= interactionRange) {
+            handleNPCInteraction();
+        }
+    }
+
+    // Override the existing interaction listener to use the new chat-based interaction
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'e') {
+            checkForInteraction();
+        }
+    });
 });
-
-// Allow sending message with Enter key
-chatInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        sendBtn.click();
-    }
-});
-
-// Initial welcome message
-addChatMessage('Welcome to the game! Move around and interact with the NPC.');
