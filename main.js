@@ -173,8 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
         backspaceButton.textContent = '⌫';
         backspaceButton.classList.add('key-button', 'backspace-button');
         backspaceButton.addEventListener('click', () => {
-            // Remove last character
-            currentMessageDisplay.textContent = currentMessageDisplay.textContent.slice(0, -1);
+            // Ensure we remove both the letter and the space after it
+            currentMessageDisplay.textContent = currentMessageDisplay.textContent.slice(0, -2);
             
             // Disable send button if no message
             if (currentMessageDisplay.textContent.length === 0) {
@@ -189,22 +189,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', sender);
         
-        const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-        
         if (sender === 'player') {
             messageElement.innerHTML = `
                 <div class="message-content">
                     <strong>You:</strong> ${message}
                 </div>
-                <span class="timestamp">${timestamp}</span>
             `;
             messageElement.classList.add('message-player');
         } else {
             messageElement.innerHTML = `
                 <div class="message-content">
-                    <strong>NPC:</strong> ${message}
+                    <strong>Stranger:</strong> ${message}
                 </div>
-                <span class="timestamp">${timestamp}</span>
             `;
             messageElement.classList.add('message-npc');
         }
@@ -249,8 +245,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Interaction with NPC (same as previous implementation)
     function handleNPCInteraction() {
         const npcMessages = [
-            "You're close to the NPC. Want to start a conversation?",
-            "The NPC seems interested in talking.",
+            "You're close to the Stranger. Want to start a conversation?",
+            "The Stranger seems interested in talking.",
             "A mysterious figure awaits your interaction."
         ];
         const randomMessage = npcMessages[Math.floor(Math.random() * npcMessages.length)];
