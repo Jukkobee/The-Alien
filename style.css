@@ -63,40 +63,40 @@ body, html {
 #current-message {
     background-color: white;
     border: 1px solid #ccc;
-    min-height: 40px;
+    min-height: 30px;
     margin: 10px;
     padding: 5px;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 #on-screen-keyboard {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
-    padding: 10px;
+    gap: 3px;
+    padding: 5px;
     background-color: #f0f0f0;
 }
 
 .keyboard-row {
     display: flex;
     justify-content: center;
-    gap: 5px;
+    gap: 3px;
 }
 
 .offset-row {
-    padding-left: 20px;
+    padding-left: 15px;
 }
 
 .key-button {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     transition: background-color 0.2s;
 }
 
@@ -105,14 +105,14 @@ body, html {
 }
 
 .backspace-button {
-    width: 60px;
+    width: 45px;
     background-color: #f0f0f0;
 }
 
 #send-button {
     width: calc(100% - 20px);
     margin: 10px;
-    padding: 10px;
+    padding: 8px;
     background-color: #007bff;
     color: white;
     border: none;

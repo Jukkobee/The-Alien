@@ -135,9 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Create keyboard layout (3 rows)
     const keyboardLayout = [
-        'QWERTYUIOP',
-        'ASDFGHJKL',
-        'ZXCVBNM'
+        'qwertyuiop',
+        'asdfghjkl',
+        'zxcvbnm'
     ];
 
     // Function to create keyboard
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 keyButton.addEventListener('click', () => {
                     // Add letter to current message
-                    currentMessageDisplay.textContent += letter;
+                    currentMessageDisplay.textContent += letter + ' ';
                     
                     // Enable send button if message is not empty
                     sendButton.disabled = false;
