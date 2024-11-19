@@ -126,21 +126,71 @@ document.addEventListener('keydown', (e) => {
 // Draw the layer
 layer.draw();
 
-// Chat functionality
+// On-screen keyboard functionality
 document.addEventListener('DOMContentLoaded', () => {
-    const chatInput = document.getElementById('chat-input');
+    const onScreenKeyboard = document.getElementById('on-screen-keyboard');
+    const currentMessageDisplay = document.getElementById('current-message');
     const sendButton = document.getElementById('send-button');
     const chatMessages = document.getElementById('chat-messages');
+
+    // Create keyboard layout (3 rows)
+    const keyboardLayout = [
+        'QWERTYUIOP',
+        'ASDFGHJKL',
+        'ZXCVBNM'
+    ];
+
+    // Function to create keyboard
+    function createKeyboard() {
+        keyboardLayout.forEach((row, rowIndex) => {
+            const keyboardRow = document.createElement('div');
+            keyboardRow.classList.add('keyboard-row');
+            
+            // Add padding to middle and bottom rows
+            if (rowIndex === 1) keyboardRow.classList.add('offset-row');
+            
+            for (let letter of row) {
+                const keyButton = document.createElement('button');
+                keyButton.textContent = letter;
+                keyButton.classList.add('key-button');
+                
+                keyButton.addEventListener('click', () => {
+                    // Add letter to current message
+                    currentMessageDisplay.textContent += letter;
+                    
+                    // Enable send button if message is not empty
+                    sendButton.disabled = false;
+                });
+                
+                keyboardRow.appendChild(keyButton);
+            }
+            
+            onScreenKeyboard.appendChild(keyboardRow);
+        });
+
+        // Add backspace button
+        const backspaceButton = document.createElement('button');
+        backspaceButton.textContent = '⌫';
+        backspaceButton.classList.add('key-button', 'backspace-button');
+        backspaceButton.addEventListener('click', () => {
+            // Remove last character
+            currentMessageDisplay.textContent = currentMessageDisplay.textContent.slice(0, -1);
+            
+            // Disable send button if no message
+            if (currentMessageDisplay.textContent.length === 0) {
+                sendButton.disabled = true;
+            }
+        });
+        onScreenKeyboard.lastChild.appendChild(backspaceButton);
+    }
 
     // Function to add a message to the chat
     function addMessage(message, sender = 'player') {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', sender);
         
-        // Create timestamp
         const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         
-        // Different styling for player and system messages
         if (sender === 'player') {
             messageElement.innerHTML = `
                 <div class="message-content">
@@ -159,24 +209,25 @@ document.addEventListener('DOMContentLoaded', () => {
             messageElement.classList.add('message-npc');
         }
 
-        // Append the message and scroll to bottom
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
     // Send message function
     function sendMessage() {
-        const message = chatInput.value.trim();
+        const message = currentMessageDisplay.textContent.trim();
         if (message) {
             // Add player message
             addMessage(message);
             
-            // Clear input
-            chatInput.value = '';
+            // Clear current message
+            currentMessageDisplay.textContent = '';
+            
+            // Disable send button
+            sendButton.disabled = true;
 
-            // Simulate NPC response (you can replace this with more complex logic)
+            // Simulate NPC response
             setTimeout(() => {
-                // Basic NPC responses based on interaction
                 const npcResponses = [
                     "Hello there! How can I help you today?",
                     "Interesting conversation...",
@@ -189,15 +240,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Event listeners for sending messages
+    // Event listener for send button
     sendButton.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
 
-    // Interaction with NPC
+    // Create keyboard when DOM is loaded
+    createKeyboard();
+
+    // Interaction with NPC (same as previous implementation)
     function handleNPCInteraction() {
         const npcMessages = [
             "You're close to the NPC. Want to start a conversation?",

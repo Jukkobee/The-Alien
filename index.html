@@ -8,15 +8,18 @@
 </head>
 <body>
     <div class="app-container">
-        <div id="container"></div> <!-- Konva will use this container -->
+        <div id="container"></div>
         <div id="chat-column">
             <div id="chat-messages">
                 <!-- Chat messages will be added here dynamically -->
             </div>
-            <div id="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Type a message...">
-                <button id="send-button">Send</button>
+            <div id="current-message">
+                <!-- Display current message being typed -->
             </div>
+            <div id="on-screen-keyboard">
+                <!-- Keyboard will be dynamically generated -->
+            </div>
+            <button id="send-button" disabled>Send</button>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/konva@8.0.3/konva.min.js"></script>
