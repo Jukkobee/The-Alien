@@ -126,3 +126,48 @@ document.addEventListener('keydown', (e) => {
 
 // Draw the layer
 layer.draw();
+
+// Previous grid and Konva setup remains the same...
+
+// Chat functionality
+const chatMessages = document.getElementById('chat-messages');
+const chatInput = document.getElementById('chat-input');
+const sendBtn = document.getElementById('send-btn');
+
+function addChatMessage(message, sender = 'System') {
+    const messageElement = document.createElement('div');
+    messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    chatMessages.appendChild(messageElement);
+    
+    // Auto-scroll to the bottom of chat
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Modify interaction logic to use chat
+function checkForInteraction() {
+    const dx = Math.abs(player.x() - npc.x());
+    const dy = Math.abs(player.y() - npc.y());
+
+    if (dx <= interactionRange && dy <= interactionRange) {
+        addChatMessage('You are near the NPC. Press E to interact!');
+    }
+}
+
+// Send message functionality
+sendBtn.addEventListener('click', () => {
+    const message = chatInput.value.trim();
+    if (message) {
+        addChatMessage(message, 'Player');
+        chatInput.value = ''; // Clear input
+    }
+});
+
+// Allow sending message with Enter key
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendBtn.click();
+    }
+});
+
+// Initial welcome message
+addChatMessage('Welcome to the game! Move around and interact with the NPC.');
