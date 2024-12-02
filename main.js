@@ -51,7 +51,7 @@ const npc = new Konva.Rect({
     y: Math.floor(mapRows / 2 + 1) * gridSize + spriteOffset, // Below the fence
     width: spriteSize,
     height: spriteSize,
-    fill: 'red'
+    fill: 'green'
 });
 layer.add(npc);
 
