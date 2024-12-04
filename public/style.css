@@ -95,11 +95,10 @@ body, html {
     padding-left: 15px;
 }
 
-/* Existing CSS remains the same until the key-button styles */
-
 .key-button {
     width: 30px;
     height: 30px;
+    background-color: white;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
@@ -107,59 +106,9 @@ body, html {
     transition: background-color 0.2s;
 }
 
-/* Color-coded keys */
-.key-green {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.key-black {
-    background-color: #333333;
-    color: white;
-}
-
-.key-red {
-    background-color: #f44336;
-    color: white;
-}
-
-.key-blue {
-    background-color: #2196F3;
-    color: white;
-}
-
 .key-button:hover {
-    opacity: 0.8;
+    background-color: #e0e0e0;
 }
-
-/* Key/Legend styles */
-.keyboard-legend {
-    background-color: black;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-around;
-    border-top: 1px solid #333;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-}
-
-.legend-color {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
-}
-
-.legend-green { background-color: #4CAF50; }
-.legend-black { background-color: #333333; }
-.legend-red { background-color: #f44336; }
-.legend-blue { background-color: #2196F3; }
-
 
 .backspace-button {
     width: 45px;

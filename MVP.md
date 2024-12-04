@@ -9,10 +9,11 @@
 - Win condition checking
 **Technical Components:**
 - GameManager class with core state variables
+- Level loading system
 - Win condition validator
 **Simplifications:**
 - Remove complex inventory system
-- No barriers
+- Simplified barrier system
 **Dependencies:**
 - LanguageSystem
 - Player
