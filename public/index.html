@@ -1,28 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barriers</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="app-container">
-        <div id="container"></div>
-        <div id="chat-column">
-            <div id="chat-messages">
-                <!-- Chat messages will be added here dynamically -->
+    <head>
+        <meta charset="UTF-8">
+        <title>Barriers</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+            
+            :root {
+                --bg-dark: #0a0a1a;
+                --accent-green: #4dff4d;
+                --text-light: #e0e0e0;
+            }
+    
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+    
+            body {
+                font-family: 'Space Mono', monospace;
+                background: linear-gradient(135deg, var(--bg-dark) 0%, #001f3f 100%);
+                color: var(--text-light);
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                perspective: 1000px;
+                overflow: hidden;
+            }
+    
+            .welcome-container {
+                background: rgba(10, 10, 26, 0.8);
+                border: 2px solid var(--accent-green);
+                border-radius: 12px;
+                padding: 40px;
+                max-width: 500px;
+                text-align: center;
+                position: relative;
+                transform-style: preserve-3d;
+                transform: rotateX(10deg) rotateY(-10deg);
+                transition: all 0.3s ease;
+                box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            }
+    
+            .welcome-container:hover {
+                transform: rotateX(0) rotateY(0);
+                box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+            }
+    
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+                color: var(--accent-green);
+                letter-spacing: 2px;
+                text-transform: uppercase;
+            }
+    
+            .narrative {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 30px;
+                opacity: 0.9;
+            }
+    
+            .start-button {
+                background: var(--accent-green);
+                color: var(--bg-dark);
+                border: none;
+                padding: 12px 24px;
+                font-size: 1rem;
+                font-weight: bold;
+                cursor: pointer;
+                border-radius: 6px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+    
+            .start-button:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+                transition: all 0.3s ease;
+            }
+    
+            .start-button:hover:before {
+                left: 100%;
+            }
+    
+            .start-button:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 15px rgba(77,255,77,0.5);
+            }
+    
+            .app-container {
+                display: none; /* Hide by default */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="welcome-container">
+            <h1>The Alien</h1>
+            <div class="narrative">
+                <p>Wilderness surrounds you. A stranger lies bound, speaking fragments of a forgotten tongue.</p>
+                <p>Memories surface—scattered words, disconnected meanings.</p>
+                <p>Each letter a key. Each sound a puzzle.</p>
+                <p>Communication is your only path to freedom.</p>
             </div>
-            <div id="current-message">
-                <!-- Display current message being typed -->
-            </div>
-            <div id="on-screen-keyboard">
-                <!-- Keyboard will be dynamically generated -->
-            </div>
-            <button id="send-button" disabled>Speak</button>
+            <button class="start-button" onclick="startApp()">Decode the Silence</button>
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/konva@8.0.3/konva.min.js"></script>
-    <script type="module" src="main.js"></script>
-</body>
+        <div class="app-container" id="app-container">
+            <div id="container"></div>
+            <div id="chat-column">
+                <div id="chat-messages">
+                    <!-- Chat messages will be added here dynamically -->
+                </div>
+                <div id="current-message">
+                    <!-- Display current message being typed -->
+                </div>
+                <div id="on-screen-keyboard">
+                    <!-- Keyboard will be dynamically generated -->
+                </div>
+                <button id="send-button" disabled>Speak</button>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/konva@8.0.3/konva.min.js"></script>
+        <script type="module" src="main.js"></script>
+        <script>
+            function startApp() {
+                document.querySelector('.welcome-container').style.display = 'none';
+                document.getElementById('app-container').style.display = 'flex';
+            }
+        </script>
+    </body>
 </html>
