@@ -1,104 +1,39 @@
 # MVP Implementation Plan
 
-### GameManager
+### Main
 **Priority:** P0
 **Implementation Timeline:** Day 1
 **Core Requirements:**
-- Basic game state management
-- Level initialization and loading
-- Win condition checking
-**Technical Components:**
-- GameManager class with core state variables
-- Level loading system
-- Win condition validator
-**Simplifications:**
-- Remove complex inventory system
-- Simplified barrier system
+- Just runs the other two classes
 **Dependencies:**
-- LanguageSystem
-- Player
-- Stranger
+- Communication
+- Grid
 
-### LanguageSystem
-**Priority:** P0
-**Implementation Timeline:** Day 1-2
-**Core Requirements:**
-- Word dictionary management
-- Sentence validation
-- Response generation
-**Technical Components:**
-- Dictionary implementation
-- Static response mapping
-- Basic grammar validation
-**Simplifications:**
-- Use static HashMap for responses instead of dynamic generation
-- Limited vocabulary per level
-**Dependencies:**
-- None
-
-### Player
-**Priority:** P0
-**Implementation Timeline:** Day 2
-**Core Requirements:**
-- Object interaction
-- Item holding system
-**Technical Components:**
-- Player state management
-- Object interaction handlers
-**Simplifications:**
-- No movement system (click-based interactions)
-- Simplified inventory
-**Dependencies:**
-- GameObject
-- GameManager
-
-### Stranger
+### Communication
 **Priority:** P0
 **Implementation Timeline:** Day 2-3
 **Core Requirements:**
-- Basic interaction responses
-- Item management
-- State tracking
-**Technical Components:**
-- Response system
-- Inventory management
-- State machine
+- keyboard functioning
+- chat log functioning
+- messages sending
 **Simplifications:**
-- Static positioning
-- Simplified behavioral states
+- NPC is dumber than planned
+- nouns and verbs aren't split up yet
 **Dependencies:**
-- GameObject
-- LanguageSystem
+- Main
 
-### GameObject System
-**Priority:** P1
-**Implementation Timeline:** Day 3-4
+
+### Grid
+**Priority:** P0
+**Implementation Timeline:** Day 1-2
 **Core Requirements:**
-- Basic object types
-- Interaction handling
-**Technical Components:**
-- GameObject base class
-- Interaction system
+- map
+- fence
+- sprites
+- movement works
 **Simplifications:**
-- Limited object types
-- Basic interaction patterns
+- no extra barriers on the map
+- no shovel or rocks
+- NPC doesnt move around
 **Dependencies:**
-- Player
-- GameManager
-
-# Implementation Schedule
-## Day 1-2 (Core Framework)
-- GameManager setup
-- Language System implementation
-- Basic Player class
-
-## Day 3-4 (Essential Features)
-- Stranger implementation
-- GameObject system
-- Core interaction mechanics
-
-## Day 5 (Enhancement & Testing)
-- Integration testing
-- Bug fixes
-- Basic UI polish
-- P1 feature implementation if time permits
+- Main
