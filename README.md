@@ -5,7 +5,9 @@
 # Design.md has everything Jacob wrote + edits from Sean
 
 # How to set up and use my files
-## Pretty self explanatory. There's only three classes. Communication runs communication with the NPC, Grid runs the map and movement and stuff, and Main connects the two of them together.
+## Download npm and firebase and konva. You got this, friend. Use terminal and stuff. "npm install konva".
+
+## Past that, pretty self explanatory. There's only three classes. Communication runs communication with the NPC, Grid runs the map and movement and stuff, and Main connects the two of them together.
 
 ## The simplified plot is that the player is walking through the wilderness when they see the stranger. The stranger has his hands and feet bound and is yelling in a language that the player does not understand (Except that they learned some basics of the language before going on this trip, but have now forgotten everything but the part of speech of each word). The player must figure out the language in order to actually understand the stranger and help him break free.
 
