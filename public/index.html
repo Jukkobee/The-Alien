@@ -110,7 +110,7 @@
             <h1>The Alien</h1>
             <div class="narrative">
                 <p>Wilderness surrounds you. A stranger lies bound, speaking fragments of a forgotten tongue.</p>
-                <p>Memories surface—scattered words, disconnected meanings.</p>
+                <p>Memories, surface—scattered words, disconnected meanings.</p>
                 <p>Each letter a key. Each sound a puzzle.</p>
                 <p>Communication is your only path to freedom.</p>
             </div>
@@ -133,10 +133,15 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/konva@8.0.3/konva.min.js"></script>
         <script type="module" src="main.js"></script>
+        <audio id="background-audio" loop>
+            <source src="theme.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
         <script>
             function startApp() {
                 document.querySelector('.welcome-container').style.display = 'none';
                 document.getElementById('app-container').style.display = 'flex';
+                document.getElementById('background-audio').play();
             }
         </script>
     </body>
