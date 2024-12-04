@@ -140,49 +140,109 @@ document.addEventListener('DOMContentLoaded', () => {
         'zxcvbnm'
     ];
 
-    // Function to create keyboard
-    function createKeyboard() {
-        keyboardLayout.forEach((row, rowIndex) => {
-            const keyboardRow = document.createElement('div');
-            keyboardRow.classList.add('keyboard-row');
-            
-            // Add padding to middle and bottom rows
-            if (rowIndex === 1) keyboardRow.classList.add('offset-row');
-            
-            for (let letter of row) {
-                const keyButton = document.createElement('button');
-                keyButton.textContent = letter;
-                keyButton.classList.add('key-button');
-                
-                keyButton.addEventListener('click', () => {
-                    // Add letter to current message
-                    currentMessageDisplay.textContent += letter + ' ';
-                    
-                    // Enable send button if message is not empty
-                    sendButton.disabled = false;
-                });
-                
-                keyboardRow.appendChild(keyButton);
-            }
-            
-            onScreenKeyboard.appendChild(keyboardRow);
-        });
 
-        // Add backspace button
-        const backspaceButton = document.createElement('button');
-        backspaceButton.textContent = '⌫';
-        backspaceButton.classList.add('key-button', 'backspace-button');
-        backspaceButton.addEventListener('click', () => {
-            // Ensure we remove both the letter and the space after it
-            currentMessageDisplay.textContent = currentMessageDisplay.textContent.slice(0, -2);
+    // Color mappings for letters
+const letterColors = {
+    // Green letters (nouns)
+    'q': 'green',
+    'z': 'green',
+    'n': 'green',
+    
+    // Black letters (miscellaneous)
+    'm': 'black',
+    'h': 'black',
+    'r': 'black',
+    'y': 'black',
+    'f': 'black',
+    'o': 'black',
+    'j': 'black',
+    'p': 'black',
+    'b': 'black',
+    'v': 'black',
+    'i': 'black',
+    'g': 'black',
+    'e': 'black',
+    
+    // Red letters (verbs)
+    'k': 'red',
+    'a': 'red',
+    'x': 'red',
+    'l': 'red',
+    'c': 'red',
+    
+    // Blue letters (directional)
+    'd': 'blue',
+    'u': 'blue',
+    't': 'blue',
+    's': 'blue',
+    'w': 'blue'
+};
+
+// Modify the keyboard creation function
+function createKeyboard() {
+    keyboardLayout.forEach((row, rowIndex) => {
+        const keyboardRow = document.createElement('div');
+        keyboardRow.classList.add('keyboard-row');
+        
+        if (rowIndex === 1) keyboardRow.classList.add('offset-row');
+        
+        for (let letter of row) {
+            const keyButton = document.createElement('button');
+            keyButton.textContent = letter;
+            keyButton.classList.add('key-button');
+            keyButton.classList.add(`key-${letterColors[letter]}`);
             
-            // Disable send button if no message
-            if (currentMessageDisplay.textContent.length === 0) {
-                sendButton.disabled = true;
-            }
-        });
-        onScreenKeyboard.lastChild.appendChild(backspaceButton);
-    }
+            keyButton.addEventListener('click', () => {
+                currentMessageDisplay.textContent += letter + ' ';
+                sendButton.disabled = false;
+            });
+            
+            keyboardRow.appendChild(keyButton);
+        }
+        
+        onScreenKeyboard.appendChild(keyboardRow);
+    });
+
+    // Add backspace button
+    const backspaceButton = document.createElement('button');
+    backspaceButton.textContent = '⌫';
+    backspaceButton.classList.add('key-button', 'backspace-button');
+    backspaceButton.addEventListener('click', () => {
+        currentMessageDisplay.textContent = currentMessageDisplay.textContent.slice(0, -2);
+        if (currentMessageDisplay.textContent.length === 0) {
+            sendButton.disabled = true;
+        }
+    });
+    onScreenKeyboard.lastChild.appendChild(backspaceButton);
+
+    // Add legend
+    const legend = document.createElement('div');
+    legend.classList.add('keyboard-legend');
+    
+    const legendItems = [
+        { color: 'green', text: 'Nouns' },
+        { color: 'red', text: 'Verbs' },
+        { color: 'blue', text: 'Directional' },
+        { color: 'black', text: 'Miscellaneous' }
+    ];
+
+    legendItems.forEach(item => {
+        const legendItem = document.createElement('div');
+        legendItem.classList.add('legend-item');
+        
+        const colorBox = document.createElement('div');
+        colorBox.classList.add('legend-color', `legend-${item.color}`);
+        
+        const text = document.createElement('span');
+        text.textContent = item.text;
+        
+        legendItem.appendChild(colorBox);
+        legendItem.appendChild(text);
+        legend.appendChild(legendItem);
+    });
+
+    document.getElementById('chat-column').appendChild(legend);
+}
 
     // Function to add a message to the chat
     function addMessage(message, sender = 'player') {

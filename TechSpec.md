@@ -48,16 +48,12 @@ Handles the language mechanics and conversation logic.
 **Methods:**
 - `parsePlayerSentence(words: List<String>)`: Returns a boolean indicating if the sentence is grammatically valid. P0
 - `generateStrangerResponse(playerWords: List<String>, state: GameState)`: Generates a contextual response based on the game state. P0
-        - riyan note: this will be changed to a static HashMap (key: player words, value: stranger response) for efficiency
-- `isValidWord(word: String)`: Checks if the word exists in the current level's vocabulary. P0
 
 #### 3. **P0: Player**
 Represents the player character and their interactions.
 
 **Variables:**
 - `position`: `HexCoordinate` - Current position on hex grid. P2
-        - riyan note: for simplification purposes, the player will not move, and all interactions will be accessible via clicks on the screen
-- `direction`: `Vector2` - Facing direction. P2
 - `isHoldingObject`: `boolean` - Whether the player is carrying something. P0
 - `currentObject`: `GameObject` - Reference to the held object. //connects to gameobject P0
 
@@ -66,7 +62,6 @@ Represents the player character and their interactions.
 - `pickupObject(object: GameObject)`: Attempts to pick up a nearby object. //connects to gameObject P1
 - `showObject(object: GameObject)`: Displays held object to the stranger.//connects to gameObject P2
 - `dropObject`: Releases the currently held object. P2
-        - riyan note: players don't have to drop items, they can just keep them in their inventory
 
 #### 4. **P0: Stranger**
 Manages the NPC stranger's behavior and state.
@@ -76,28 +71,13 @@ Manages the NPC stranger's behavior and state.
 - `needsMet`: `boolean` - Whether the stranger's objective is fulfilled. P0
 - `currentState`: `State` - Current behavioral state. P0
         - riyan note: this is really vague
-- `inventory`: `List<GameObject>` - Items the stranger possesses. P0
 
 **Methods:**
 - `processPlayerAction(action: Action)`: Responds to player interactions. P0
-        - riyan note: this is also really vague
 - `updateState`: Updates the stranger's state based on game progress. P0
 - `giveItem(item: GameObject)`: Transfers item to the player if conditions are met. P0 //connects to GameObject
 
-#### 5. **P1: HexGrid**
-Manages the hexagonal grid system and object placement.
-
-**Variables:**
-- `grid`: `2D Array of Hex` - Grid layout. P2
-- `walkableHexes`: `List<HexCoordinate>` - Accessible positions. P2
-- `objectLocations`: `Map<GameObject, HexCoordinate>` - Object positions. //connects to GameObject P1
-
-**Methods:**
-- `isWalkable(position: HexCoordinate)`: Returns a boolean indicating if the hex can be walked on. P2
-- `getNeighbors(position: HexCoordinate)`: Returns a list of adjacent accessible hexes. P2
-- `placeObject(object: GameObject, position: HexCoordinate)`: Places object on grid. //connects to GameObject P2
-
-#### 6. **P1: GameObject**
+#### 5. **P1: GameObject**
 Base class for interactive objects in the game.
 
 **Variables:**
@@ -111,3 +91,16 @@ Base class for interactive objects in the game.
 - `updateState(state: GameState)`: Updates object state based on game events. P2
         - riyan note: really vague
 - `show/hide`: Controls object visibility. P2
+
+#### 6. **P1: HexGrid**
+Manages the hexagonal grid system and object placement.
+
+**Variables:**
+- `grid`: `2D Array of Hex` - Grid layout. P2
+- `walkableHexes`: `List<HexCoordinate>` - Accessible positions. P2
+- `objectLocations`: `Map<GameObject, HexCoordinate>` - Object positions. //connects to GameObject P1
+
+**Methods:**
+- `isWalkable(position: HexCoordinate)`: Returns a boolean indicating if the hex can be walked on. P2
+- `getNeighbors(position: HexCoordinate)`: Returns a list of adjacent accessible hexes. P2
+- `placeObject(object: GameObject, position: HexCoordinate)`: Places object on grid. //connects to GameObject P2
