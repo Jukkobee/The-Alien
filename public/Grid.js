@@ -4,7 +4,7 @@ export const mapRows = Math.floor(window.innerHeight / gridSize);
 const mapWidth = mapCols * gridSize;
 const mapHeight = mapRows * gridSize;
 
-// helper for snap to grid
+// makes it so that the objects aren't in between grid squares
 export function snapToGrid(value) {
     return Math.round(value / gridSize) * gridSize;
 }
