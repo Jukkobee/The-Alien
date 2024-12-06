@@ -37,3 +37,6 @@
 - NPC doesnt move around
 **Dependencies:**
 - Main
+
+### Added Welcome Screen
+- as per the README, I added a functioning welcome screen to intorduce the user to the game. 
