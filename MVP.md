@@ -16,6 +16,7 @@
 - keyboard functioning
 - chat log functioning
 - messages sending
+    - KZ: added some simple responces for the alien. They currently have meaning explainations below them
 **Simplifications:**
 - NPC is dumber than planned
 - nouns and verbs aren't split up yet
