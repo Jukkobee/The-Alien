@@ -41,7 +41,7 @@ export default class CommunicationHandler {
                 description: 'The stranger nods appreciatively.'
             },
             'p': {
-                response: 'q k c z c q',
+                response: 'q k c',
                 description: 'The stranger gestures to their bindings again.'
             },
             't': {
@@ -58,15 +58,15 @@ export default class CommunicationHandler {
             },
             'zc': {
                 response: 'h j j q k c',
-                description: 'The stranger becomes very excited at your offer of help.'
+                description: 'The stranger becomes very excited.'
             },
             'kc': {
                 response: 'h q k c j',
-                description: 'The stranger eagerly confirms they want help.'
+                description: 'The stranger nods eagerly.'
             },
             'pn': {
                 response: 'm n q k c',
-                description: 'The stranger emphasizes there are no wolves, redirecting attention to their need for help.'
+                description: 'The stranger looks around panickedly, and then looks back at, seemingly annoyed.'
             },
             's': {
                 response: 'h s d s f',
@@ -111,7 +111,7 @@ export default class CommunicationHandler {
 
         // Default response if no patterns match
         return {
-            response: 'p q m k',
+            response: 'p?',
             description: 'The stranger seems confused by your words.'
         };
     }
