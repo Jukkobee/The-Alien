@@ -22,7 +22,8 @@ export default class CommunicationHandler {
             't': 'Location',
             'p': 'What',
             's': 'Forward',
-            'w': 'Backward'
+            'w': 'Backward',
+            'v': 'Collin is a cutie'
         };
 
         // Response patterns with lowercase letters and no punctuation
@@ -32,7 +33,7 @@ export default class CommunicationHandler {
                 description: 'The stranger looks around frantically, then relaxes when seeing no wolf.'
             },
             'c': {
-                response: 'h j q k c',
+                response: 'im-coming-my-lil-pog-champ',
                 description: 'The stranger nods vigorously, indicating they need help.'
             },
             'j': {
@@ -74,7 +75,13 @@ export default class CommunicationHandler {
             'w': {
                 response: 'm w d s',
                 description: 'The stranger discourages going backward, pointing left and forward instead.'
+            },
+            'v': {
+                response: 'Jacob-why-you-so-cute?',
+                description: 'The stranger seems to be trying to say something.'
+
             }
+            
         };
     }
 
