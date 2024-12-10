@@ -1,3 +1,5 @@
+import { handleAlienDialog } from './AlienDialog.js';
+
 export function initializeChat() {
     const onScreenKeyboard = document.getElementById('on-screen-keyboard');
     const currentMessageDisplay = document.getElementById('current-message');
@@ -92,18 +94,25 @@ export function initializeChat() {
     }
 
     // Function to add a message to the chat log
-    function addMessage(message, sender) {
+    function addMessage(message, sender, translation = '') {
         if (!message) return;
-
-        // Insert space after each letter in the message
-        const spacedMessage = message.split('').join(' ');
 
         const messageElement = document.createElement('div');
         messageElement.classList.add('message', sender === 'player' ? 'message-player' : 'message-npc');
-        messageElement.textContent = `${sender === 'player' ? 'You' : 'Stranger'}: ${spacedMessage}`;
+        
+        // Add the original message
+        messageElement.textContent = `${sender === 'player' ? 'You' : 'Stranger'}: ${message}`;
+        
+        // Add translation for alien responses
+        if (translation && sender === 'npc') {
+            const translationElement = document.createElement('div');
+            translationElement.classList.add('message-translation');
+            translationElement.textContent = `(${translation})`;
+            messageElement.appendChild(translationElement);
+        }
         
         chatMessages.appendChild(messageElement);
-        chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to the bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
     // Function to send a message
@@ -111,20 +120,14 @@ export function initializeChat() {
         const message = currentMessageDisplay.textContent.trim();
         if (!message) return;
 
-        addMessage(message, 'player'); // Add player's message
-        currentMessageDisplay.textContent = ''; // Clear input
-        sendButton.disabled = true; // Disable Speak button
+        addMessage(message, 'player');
+        currentMessageDisplay.textContent = '';
+        sendButton.disabled = true;
 
-        // Simulate NPC response
+        // Get response from alien dialog system
         setTimeout(() => {
-            const npcResponses = [
-                "Hello there! How can I help you today?",
-                "Interesting conversation...",
-                "I'm listening.",
-                "Is there something specific you'd like to discuss?"
-            ];
-            const response = npcResponses[Math.floor(Math.random() * npcResponses.length)];
-            addMessage(response, 'npc'); // Add NPC's response
+            const { response, translation } = handleAlienDialog(message);
+            addMessage(response, 'npc', translation);
         }, 500);
     }
 

@@ -16,6 +16,7 @@
 - keyboard functioning
 - chat log functioning
 - messages sending
+    - KZ: added some simple responces for the alien. They currently have meaning explainations below them
 **Simplifications:**
 - NPC is dumber than planned
 - nouns and verbs aren't split up yet
@@ -37,3 +38,6 @@
 - NPC doesnt move around
 **Dependencies:**
 - Main
+
+### Added Welcome Screen
+- as per the README, I added a functioning welcome screen to intorduce the user to the game. 
