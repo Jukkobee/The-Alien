@@ -58,6 +58,7 @@ export function initializeChat() {
             }
 
             onScreenKeyboard.appendChild(keyboardRow);
+
         });
 
         // Create and append the backspace button
@@ -78,26 +79,18 @@ export function initializeChat() {
         const lastRow = document.querySelector('.keyboard-row:last-child');
         lastRow.appendChild(backspaceButton);
 
-        // Add the category legend
+        // Add the horizontal legend below the keyboard
         const legend = document.createElement('div');
-        legend.classList.add('keyboard-legend');
+        legend.style.color = 'white';
+        legend.style.fontSize = '12px'; // Smaller font size
+        legend.style.display = 'flex'; // Display in a row
+        legend.style.justifyContent = 'center'; // Center the items
+        legend.style.gap = '10px'; // Add some space between items
         legend.innerHTML = `
-            <div class="legend-item">
-                <span class="legend-dot" style="background-color: #ff4d4d;"></span>
-                <span>Nouns</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-dot" style="background-color: #4dff4d;"></span>
-                <span>Verbs</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-dot" style="background-color: #4d94ff;"></span>
-                <span>Directionals</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-dot" style="background-color: #ffffff;"></span>
-                <span>Miscellaneous</span>
-            </div>
+            <span><span style="color: #ff4d4d;">●</span> Nouns</span>
+            <span><span style="color: #4dff4d;">●</span> Verbs</span>
+            <span><span style="color: #4d94ff;">●</span> Directionals</span>
+            <span><span style="color: #ffffff;">●</span> Miscellaneous</span>
         `;
         onScreenKeyboard.appendChild(legend);
     }
