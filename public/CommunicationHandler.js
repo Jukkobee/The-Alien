@@ -9,15 +9,12 @@ export default class CommunicationHandler {
             'z': 'You',
             'm': 'No',
             'h': 'Yes',
-            'r': 'One', //useless so far
-            'd': 'Two',//useless so far
-            'f': 'More',//useless so far
             'k': 'Want',
             'a': 'Be', //useless so far
             'w': 'Give',//useless so far
-            'l': 'Take',//useless so far
             'n': 'Wolf',
             'c': 'Help',
+            'd': 'Freedom',
             'j': 'Please/Thanks/Sorry',
             'y': 'Left',
             'u': 'Right',
@@ -25,12 +22,6 @@ export default class CommunicationHandler {
             'p': 'What',
             's': 'Forward',
             'x': 'Backward',
-            'v': 'Collin is a cutie', // nothing
-            'b': 'fs', //nothing
-            'i': 'fs', //nothing
-            'g': 'fs', //nothing
-            'e': 'fs' //nothing
-
         };
 
         // Response patterns with lowercase letters and no punctuation
@@ -55,20 +46,28 @@ export default class CommunicationHandler {
                 response: () => getPathToTarget(), 
                 description: 'The stranger tries to indicate a couple of directions.'
             },
-            'pt': {
+            'pt': { // what location
                 response: () => getPathToTarget(),
                 description: 'The stranger seems to be trying to describe a specific location.'
             },
-            'qc': {
-                response: 'n! q k c. z c q', // yes! i want help. you help i.
+            'qd': { // want freedom
+                response: 'h! q k d. z c q. z w d.', // yes! i want freedom. you help i.
+                description: 'The stranger excitedly indicates their bound hands.'
+            },
+            'zqd': { // you want freedom
+                response: 'h! q k d. z c q. z w d.', // yes! i want freedom. you help i.
                 description: 'The stranger excitedly indicates their bound hands.'
             },
             'zc': { // you help
                 response: 'm. q m c', // no. i no help.
                 description: 'The stranger shakes their head, gesturing to his bounds.'
             },
-            'kc': { // want help
-                response: 'j. q k c', // please. i want help
+            'zmc': { // you no help
+                response: 'h. z m c. j',
+                description: 'The stranger nods apologetically'
+            },
+            'qkd': { // i want help
+                response: 'j. q m c', // sorry. i want help
                 description: 'The stranger shrugs apologetically.'
             },
             
@@ -95,7 +94,7 @@ export default class CommunicationHandler {
         if (input.includes('n')) { //includes wolf
             return {
                 response: 'n? m n', // wolf? no wolf
-                description: 'The stranger looks around panickedly, and then looks back at, seemingly annoyed, and says the above.'
+                description: 'The stranger looks around panickedly, and then looks back at you, seemingly annoyed, and says the above.'
             };
         }
 
