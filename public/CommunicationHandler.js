@@ -11,7 +11,7 @@ export default class CommunicationHandler {
             'h': 'Yes',
             'k': 'Want',
             'a': 'Be', //useless so far
-            'w': 'Give',//useless so far
+            'w': 'Give',
             'n': 'Wolf',
             'c': 'Help',
             'd': 'Freedom',
@@ -30,8 +30,8 @@ export default class CommunicationHandler {
                 response: 'n? m n', // wolf? no wolf
                 description: 'The stranger looks around panickedly and frantically, and then looks back at you confused and annoyed.'
             },
-            'c': {
-                response: 'c! h! q k c', // help! yes! i want help
+            'd': {
+                response: 'd! h! q k d', // help! yes! i want help
                 description: 'The stranger nods vigorously.'
             },
             'j': { //please/thanks/sorry
@@ -50,11 +50,11 @@ export default class CommunicationHandler {
                 response: () => getPathToTarget(),
                 description: 'The stranger seems to be trying to describe a specific location.'
             },
-            'qd': { // want freedom
-                response: 'h! q k d. z c q. z w d.', // yes! i want freedom. you help i.
+            'kd': { // want freedom
+                response: 'h, q k d. z c q. z w d.', // yes, i want freedom. you help i.
                 description: 'The stranger excitedly indicates their bound hands.'
             },
-            'zqd': { // you want freedom
+            'zkd': { // you want freedom
                 response: 'h! q k d. z c q. z w d.', // yes! i want freedom. you help i.
                 description: 'The stranger excitedly indicates their bound hands.'
             },
@@ -62,14 +62,42 @@ export default class CommunicationHandler {
                 response: 'm. q m c', // no. i no help.
                 description: 'The stranger shakes their head, gesturing to his bounds.'
             },
+            'jzc': { // please you help
+                response: 'm. q m c', // no. i no help.
+                description: 'The stranger shakes their head, gesturing to his bounds.'
+            },
+            'zjc': { // you please help
+                response: 'm. q m c', // no. i no help.
+                description: 'The stranger shakes their head, gesturing to his bounds.'
+            },
+            'zcj': { // you help please
+                response: 'm. q m c', // no. i no help.
+                description: 'The stranger shakes their head, gesturing to his bounds.'
+            },
             'zmc': { // you no help
-                response: 'h. z m c. j',
+                response: 'h. q m c. j', //yes. you no help. sorry
                 description: 'The stranger nods apologetically'
             },
-            'qkd': { // i want help
-                response: 'j. q m c', // sorry. i want help
+            'cq': { // help i
+                response: 'j. q m c', // sorry. i no help
                 description: 'The stranger shrugs apologetically.'
             },
+            'jcq': { // please help i
+                response: 'j. q m c', // sorry. i no help
+                description: 'The stranger shrugs apologetically.'
+            },
+            'cqj': { // help i please
+                response: 'j. q m c', // sorry. i no help
+                description: 'The stranger shrugs apologetically.'
+            },
+            'qcz': { // i help you
+                response: 'h! j, c q', // yes! please, help i
+                description: 'The stranger nods excitedly at you.'
+            },
+            'qc': { // help you
+                response: 'h! j, c q',
+                description: 'The stranger nods excitedly at you.'
+            }
             
         };
     }
@@ -97,10 +125,15 @@ export default class CommunicationHandler {
                 description: 'The stranger looks around panickedly, and then looks back at you, seemingly annoyed, and says the above.'
             };
         }
-
+        if (input.includes('d')) {
+            return {
+                response: 'd! h! q k d. z w d.', // freedom! yes! i want freedom
+                description: 'Interrupting you after your mention of "c", the stranger nods eagerly and speaks.'
+            };
+        }
         if (input.includes('c')) {
             return {
-                response: 'c! c! h, h! q k c', // help! help! yes, yes! i want help
+                response: 'c! c! h, h! z c q', // help! help! yes, yes! you help me
                 description: 'Interrupting you after your mention of "c", the stranger nods eagerly and speaks.'
             };
         }
