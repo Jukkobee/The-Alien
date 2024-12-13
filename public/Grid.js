@@ -3,6 +3,8 @@ export const mapCols = Math.floor(window.innerWidth * 0.75 / gridSize); // 75% o
 export const mapRows = Math.floor(window.innerHeight / gridSize);
 const mapWidth = mapCols * gridSize;
 const mapHeight = mapRows * gridSize;
+let rightLocation = false; // Set to true when the player reaches the desired location
+
 
 // makes it so that the objects aren't in between grid squares
 export function snapToGrid(value) {
@@ -84,6 +86,13 @@ export function handlePlayerMovement(e) {
         case 'd':
             newX += speed;
             break;
+        // Check if 'u' is pressed and if the player is at the right location
+        case 'u':
+            if (rightLocation) {
+                // Pop-up when the player presses 'u' at the right location
+                alert("You use your shovel to dig up a knife and throw it to the stranger, who cuts himself free of his bonds. You have saved the day. Congrats on winning!!!");
+            }
+            break;
     }
 
     newX = Math.min(Math.max(snapToGrid(newX - spriteOffset), 0), mapWidth - gridSize) + spriteOffset;
@@ -98,5 +107,53 @@ export function handlePlayerMovement(e) {
     player.position({ x: newX, y: newY });
     layer.batchDraw();
 }
+
+export function getPathToTarget() {
+    const targetX = 7.15; // Target column
+    const targetY = 3.15; // Target row
+    const currentX = player.x() / gridSize;
+    const currentY = player.y() / gridSize;
+    let path = '';
+    if (Math.abs(currentX - targetX) < 0.8 && Math.abs(currentY - targetY) < 0.8)
+    {
+        return 'h!! h!! t!';
+    }
+
+    // Calculate horizontal movement
+    if (currentX - targetX > 0.5) {
+
+        path += 'y'.repeat(currentX - targetX); // Move left
+    } else if (targetX - currentX > 0.5) {
+
+        path += 'u'.repeat(targetX - currentX); // Move right
+    }
+
+    // Calculate vertical movement
+    if (currentY - targetY > 0.5) {
+        path += 'x'.repeat(currentY - targetY ); // Move backward
+    } else if (targetY - currentY > 0.5) {
+        path += 's'.repeat(targetY - currentY ); // Move forward
+    }
+
+    return path;
+}
+
+// Function to set 'rightLocation' to true when the player reaches the target location
+export function checkRightLocation() {
+    const targetX = 7.15; // Target column
+    const targetY = 3.15; // Target row
+    const currentX = player.x() / gridSize;
+    const currentY = player.y() / gridSize;
+
+    // Check if the player is at the target location (within a small margin)
+    if (Math.abs(currentX - targetX) < 0.8 && Math.abs(currentY - targetY) < 0.8) {
+        rightLocation = true;
+    } else {
+        rightLocation = false;
+    }
+}
+
+// Call this function within the game loop or wherever appropriate to update the location status
+setInterval(checkRightLocation, 100);  // Check every 100ms to update the location status
 
 layer.draw();

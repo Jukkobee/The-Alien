@@ -5,24 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barriers</title>
     <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="app-container">
-        <div id="container"></div>
-        <div id="chat-column">
-            <div id="chat-messages">
-                <!-- Chat messages will be added here dynamically -->
+    
+    </head>
+    <body>
+        <div class="welcome-container">
+            <h1>Barriers</h1>
+            <div class="narrative">
+                <p>Wilderness surrounds you. A stranger lies bound, speaking fragments of a forgotten tongue.</p>
+                <p>Memories surface—–scattered words, disconnected meanings.</p>
+                <p>Each letter a key. Each sound a puzzle.</p>
+                <p>Communication is your only path to freedom.</p>
+                <p></p>
+                <p>Note: You have a shovel. Press 'u' on your keyboard to use it, when the time is right.</p>
             </div>
-            <div id="current-message">
-                <!-- Display current message being typed -->
-            </div>
-            <div id="on-screen-keyboard">
-                <!-- Keyboard will be dynamically generated -->
-            </div>
-            <button id="send-button" disabled>Speak</button>
+            <button class="start-button" onclick="startApp()">Decode the Silence</button>
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/konva@8.0.3/konva.min.js"></script>
-    <script type="module" src="main.js"></script>
-</body>
+        <div class="app-container" id="app-container">
+            <div id="container"></div>
+            <div id="chat-column">
+                <div id="chat-messages">
+                    <!-- Chat messages will be added here dynamically -->
+                </div>
+                <div id="current-message">
+                    <!-- Display current message being typed -->
+                </div>
+                <div id="on-screen-keyboard">
+                    <!-- Keyboard will be dynamically generated -->
+                </div>
+                <button id="send-button" disabled>Speak</button>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/konva@8.0.3/konva.min.js"></script>
+        <script type="module" src="main.js"></script>
+        <audio id="background-audio" loop>
+            <source src="theme.mp3" type="audio/mpeg">
+        </audio>
+        <script>
+            function startApp() {
+                document.querySelector('.welcome-container').style.display = 'none';
+                document.getElementById('app-container').style.display = 'flex';
+                document.getElementById('background-audio').play();
+            }
+        </script>
+    </body>
 </html>
