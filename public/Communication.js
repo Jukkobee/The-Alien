@@ -12,16 +12,16 @@ export function initializeChat() {
         return;
     }
 
-    // Keyboard layout
-    const keyboardLayout = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];
+// Keyboard layout without 'b', 'v', 'i', 'g', 'e'
+const keyboardLayout = ['qwertyuo', 'asdfhjl', 'zxcnmp']; // Removed b, v, i, g, e
 
-    // Define the categories for each letter
-    const letterCategories = {
-        nouns: ['q', 'z', 'n'],
-        verbs: ['k', 'a', 'x', 'l', 'c'],
-        directionals: ['d', 'u', 't', 'p', 's', 'w'],
-        miscellaneous: ['m', 'h', 'r', 'y', 'f', 'o', 'j', 'b', 'v', 'i', 'g', 'e']
-    };
+// Define the categories for each letter, excluding the removed ones
+const letterCategories = {
+    nouns: ['q', 'z', 'n'],
+    verbs: ['k', 'a', 'x', 'l', 'c'],
+    directionals: ['d', 'u', 't', 'p', 's', 'w'],
+    miscellaneous: ['m', 'h', 'r', 'y', 'f', 'o', 'j'] // Removed b, v, i, g, e
+};
 
     // Function to get the color based on the letter category
     function getLetterColor(letter) {
