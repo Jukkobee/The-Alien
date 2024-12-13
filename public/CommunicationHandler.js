@@ -29,46 +29,42 @@ export default class CommunicationHandler {
         // Response patterns with lowercase letters and no punctuation
         this.responsePatterns = {
             'n': {
-                response: 'n m n',
-                description: 'The stranger looks around frantically, then relaxes when seeing no wolf.'
+                response: 'n? m n',
+                description: 'The stranger looks around panickedly and frantically, and then looks back at you confused and annoyed.'
             },
             'c': {
-                response: 'im-coming-my-lil-pog-champ',
-                description: 'The stranger nods vigorously, indicating they need help.'
+                response: 'c! h! q k c',
+                description: 'The stranger nods vigorously.'
             },
             'j': {
-                response: 'j h',
-                description: 'The stranger nods appreciatively.'
+                response: '...j?',
+                description: 'The stranger smiles at you, seemingly a bit confused.'
             },
             'p': {
                 response: 'q k c',
                 description: 'The stranger gestures to their bindings again.'
             },
             't': {
-                response: 'd s s',
-                description: 'The stranger tries to indicate a direction.'
+                response: 'd s s', // fix this. should be dependent on player location
+                description: 'The stranger tries to indicate a couple of directions.'
             },
             'pt': {
-                response: 't d s s x t',
+                response: 't d s s', // fix this. should be dependent on player location
                 description: 'The stranger seems to be trying to describe a specific location.'
             },
             'qc': {
-                response: 'h j z c q',
+                response: 'n! q k c. z c q', // yes! i want help. you help i.
                 description: 'The stranger excitedly indicates their bound hands.'
             },
-            'zc': {
-                response: 'h j j q k c',
-                description: 'The stranger becomes very excited.'
+            'zc': { // you help
+                response: 'm. q m c', // 
+                description: 'The stranger shakes their head, gesturing to his bounds.'
             },
             'kc': {
-                response: 'h q k c j',
-                description: 'The stranger nods eagerly.'
+                response: 'j. q k c', //
+                description: 'The stranger shrugs apologetically.'
             },
-            'pn': {
-                response: 'm n q k c',
-                description: 'The stranger looks around panickedly, and then looks back at, seemingly annoyed.'
-            },
-            's': {
+            's': { //we're on this one now.
                 response: 'h s d s f',
                 description: 'The stranger encourages forward movement, indicating left and more.'
             },
@@ -76,11 +72,6 @@ export default class CommunicationHandler {
                 response: 'm w d s',
                 description: 'The stranger discourages going backward, pointing left and forward instead.'
             },
-            'v': {
-                response: 'Jacob-why-you-so-cute?',
-                description: 'The stranger seems to be trying to say something.'
-
-            }
             
         };
     }
@@ -95,17 +86,17 @@ export default class CommunicationHandler {
         }
 
         // Check for common patterns
-        if (input.includes('n') && input.includes('c')) {
+        if (input.includes('n')) { //includes wolf
             return {
-                response: 'm n q k c',
-                description: 'The stranger emphasizes there are no wolves, but urgently indicates they need help.'
+                response: 'n? m n', // wolf? no wolf
+                description: 'The stranger looks around panickedly, and then looks back at, seemingly annoyed, and says the above.'
             };
         }
 
-        if (input.includes('c') && input.includes('j')) {
+        if (input.includes('c')) {
             return {
-                response: 'h q k c j',
-                description: 'The stranger eagerly acknowledges your offer of help.'
+                response: 'c! c! h, h! q k c', // help! help! yes, yes! i want help
+                description: 'Interrupting you after your mention of "c", the stranger nods eagerly and speaks.'
             };
         }
 
