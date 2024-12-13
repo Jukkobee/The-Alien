@@ -13,7 +13,7 @@ export default class CommunicationHandler {
             'd': 'Two',//useless so far
             'f': 'More',//useless so far
             'k': 'Want',
-            'a': 'Be',//useless so far
+            'a': 'Be', //useless so far
             'w': 'Give',//useless so far
             'l': 'Take',//useless so far
             'n': 'Wolf',
@@ -52,11 +52,11 @@ export default class CommunicationHandler {
                 description: 'The stranger gestures to their bindings again.'
             },
             't': {
-                response: getPathToTarget(), 
+                response: () => getPathToTarget(), 
                 description: 'The stranger tries to indicate a couple of directions.'
             },
             'pt': {
-                response: 't d s s', // fix this. should be dependent on player location
+                response: () => getPathToTarget(),
                 description: 'The stranger seems to be trying to describe a specific location.'
             },
             'qc': {
@@ -79,9 +79,16 @@ export default class CommunicationHandler {
         // Convert input to lowercase and remove any spaces
         input = input.toLowerCase().replace(/[^a-z]/g, '');
         
-        // Check if we have a specific response for this input
         if (this.responsePatterns[input]) {
-            return this.responsePatterns[input];
+            const pattern = this.responsePatterns[input];
+            const response = typeof pattern.response === 'function' 
+                ? pattern.response() // Call the function if it's a function
+                : pattern.response; // Otherwise, use the static response
+
+            return {
+                response,
+                description: pattern.description
+            };
         }
 
         // Check for common patterns

@@ -100,24 +100,30 @@ export function handlePlayerMovement(e) {
 }
 
 export function getPathToTarget() {
-    const targetX = 8; // Target column
-    const targetY = 3; // Target row
+    const targetX = 7.15; // Target column
+    const targetY = 3.15; // Target row
     const currentX = player.x() / gridSize;
     const currentY = player.y() / gridSize;
     let path = '';
+    if (Math.abs(currentX - targetX) < 0.8 && Math.abs(currentY - targetY) < 0.8)
+    {
+        return 'h!! h!! t!';
+    }
 
     // Calculate horizontal movement
-    if (currentX > targetX) {
+    if (currentX - targetX > 0.5) {
+
         path += 'y'.repeat(currentX - targetX); // Move left
-    } else if (currentX < targetX) {
+    } else if (targetX - currentX > 0.5) {
+
         path += 'u'.repeat(targetX - currentX); // Move right
     }
 
     // Calculate vertical movement
-    if (currentY > targetY) {
-        path += 'x'.repeat(currentY - targetY); // Move backward
-    } else if (currentY < targetY) {
-        path += 's'.repeat(targetY - currentY); // Move forward
+    if (currentY - targetY > 0.5) {
+        path += 'x'.repeat(currentY - targetY ); // Move backward
+    } else if (targetY - currentY > 0.5) {
+        path += 's'.repeat(targetY - currentY ); // Move forward
     }
 
     return path;
