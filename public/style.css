@@ -6,11 +6,11 @@
     --text-light: #e0e0e0;
 }
 
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 body {
     font-family: 'Space Mono', monospace;
@@ -118,7 +118,7 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 75%; /* Make room for chat column */
+    max-width: 79%; /* Make room for chat column */
 }
 
 /* Style for chat column */

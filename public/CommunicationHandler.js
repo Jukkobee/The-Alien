@@ -23,25 +23,30 @@ export default class CommunicationHandler {
             'p': 'What',
             's': 'Forward',
             'w': 'Backward',
-            'v': 'Collin is a cutie'
+            'v': 'Collin is a cutie', // nothing
+            'b': 'fs', //nothing
+            'i': 'fs', //nothing
+            'g': 'fs', //nothing
+            'e': 'fs' //nothing
+
         };
 
         // Response patterns with lowercase letters and no punctuation
         this.responsePatterns = {
             'n': {
-                response: 'n? m n',
+                response: 'n? m n', // wolf? no wolf
                 description: 'The stranger looks around panickedly and frantically, and then looks back at you confused and annoyed.'
             },
             'c': {
-                response: 'c! h! q k c',
+                response: 'c! h! q k c', // help! yes! i want help
                 description: 'The stranger nods vigorously.'
             },
-            'j': {
+            'j': { //please/thanks/sorry
                 response: '...j?',
                 description: 'The stranger smiles at you, seemingly a bit confused.'
             },
-            'p': {
-                response: 'q k c',
+            'p': { // what
+                response: 'q k c', // i want help
                 description: 'The stranger gestures to their bindings again.'
             },
             't': {
@@ -57,19 +62,19 @@ export default class CommunicationHandler {
                 description: 'The stranger excitedly indicates their bound hands.'
             },
             'zc': { // you help
-                response: 'm. q m c', // 
+                response: 'm. q m c', // no. i no help.
                 description: 'The stranger shakes their head, gesturing to his bounds.'
             },
-            'kc': {
-                response: 'j. q k c', //
+            'kc': { // want help
+                response: 'j. q k c', // please. i want help
                 description: 'The stranger shrugs apologetically.'
             },
-            's': { //we're on this one now.
-                response: 'h s d s f',
+            's': { // forward
+                response: 'h s d s f', // fix this. should be dependent on player location
                 description: 'The stranger encourages forward movement, indicating left and more.'
             },
-            'w': {
-                response: 'm w d s',
+            'w': { // backward
+                response: 'm w d s', // fix this. should be dependent on player location
                 description: 'The stranger discourages going backward, pointing left and forward instead.'
             },
             
