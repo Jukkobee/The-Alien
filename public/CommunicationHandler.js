@@ -1,3 +1,5 @@
+import { getPathToTarget } from './Grid.js';
+
 // CommunicationHandler.js
 export default class CommunicationHandler {
     constructor() {
@@ -7,22 +9,22 @@ export default class CommunicationHandler {
             'z': 'You',
             'm': 'No',
             'h': 'Yes',
-            'r': 'One',
-            'y': 'Two',
-            'f': 'More',
+            'r': 'One', //useless so far
+            'd': 'Two',//useless so far
+            'f': 'More',//useless so far
             'k': 'Want',
-            'a': 'Be',
-            'x': 'Give',
-            'l': 'Take',
+            'a': 'Be',//useless so far
+            'w': 'Give',//useless so far
+            'l': 'Take',//useless so far
             'n': 'Wolf',
             'c': 'Help',
             'j': 'Please/Thanks/Sorry',
-            'd': 'Left',
+            'y': 'Left',
             'u': 'Right',
             't': 'Location',
             'p': 'What',
             's': 'Forward',
-            'w': 'Backward',
+            'x': 'Backward',
             'v': 'Collin is a cutie', // nothing
             'b': 'fs', //nothing
             'i': 'fs', //nothing
@@ -50,7 +52,7 @@ export default class CommunicationHandler {
                 description: 'The stranger gestures to their bindings again.'
             },
             't': {
-                response: 'd s s', // fix this. should be dependent on player location
+                response: getPathToTarget(), 
                 description: 'The stranger tries to indicate a couple of directions.'
             },
             'pt': {
@@ -68,14 +70,6 @@ export default class CommunicationHandler {
             'kc': { // want help
                 response: 'j. q k c', // please. i want help
                 description: 'The stranger shrugs apologetically.'
-            },
-            's': { // forward
-                response: 'h s d s f', // fix this. should be dependent on player location
-                description: 'The stranger encourages forward movement, indicating left and more.'
-            },
-            'w': { // backward
-                response: 'm w d s', // fix this. should be dependent on player location
-                description: 'The stranger discourages going backward, pointing left and forward instead.'
             },
             
         };

@@ -99,4 +99,29 @@ export function handlePlayerMovement(e) {
     layer.batchDraw();
 }
 
+export function getPathToTarget() {
+    const targetX = 8; // Target column
+    const targetY = 3; // Target row
+    const currentX = player.x() / gridSize;
+    const currentY = player.y() / gridSize;
+    let path = '';
+
+    // Calculate horizontal movement
+    if (currentX > targetX) {
+        path += 'y'.repeat(currentX - targetX); // Move left
+    } else if (currentX < targetX) {
+        path += 'u'.repeat(targetX - currentX); // Move right
+    }
+
+    // Calculate vertical movement
+    if (currentY > targetY) {
+        path += 'x'.repeat(currentY - targetY); // Move backward
+    } else if (currentY < targetY) {
+        path += 's'.repeat(targetY - currentY); // Move forward
+    }
+
+    return path;
+}
+
+
 layer.draw();
